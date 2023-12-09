@@ -1,9 +1,21 @@
 package com.bean;
 
+import javax.persistence.*;
+import java.util.Set;
+@Entity
+
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name="name")
     private String name;
+    @Column(name="authorId")
     private int authorId;
+    private Set<Student> student;
+
+
+
 
     public Book() {
     }
@@ -38,12 +50,20 @@ public class Book {
         this.authorId = authorId;
     }
 
+    public Set<Student> getStudent() {
+        return student;
+    }
+    public void setStudent(Set<Student> student) {
+        this.student = student;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", authorId=" + authorId +
+                ", student=" + student +
                 '}';
     }
 }

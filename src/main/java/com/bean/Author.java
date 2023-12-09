@@ -1,9 +1,15 @@
 package com.bean;
 
-public class Author {
+import javax.persistence.*;
 
+@Entity
+public class Author extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name="name")
     private String name;
+    @Column(name = "age")
     private int age;
 
     public Author() {

@@ -1,9 +1,19 @@
 package com.bean;
 
-public class Student {
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+public class Student extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name="name")
     private String name;
+    @Column(name="age")
     private int age;
+    @ManyToMany
+    private Set<Book> books;
 
     public Student() {
     }
@@ -31,13 +41,22 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
+    public Set<Book> getBooks() {
+        return books;
+    }
 
+
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
     @Override
     public String toString() {
-        return "{" +
+        return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", books=" + books +
                 '}';
     }
 }
